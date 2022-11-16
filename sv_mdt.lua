@@ -21,7 +21,7 @@ local embeds = {
   PerformHttpRequest(dwebhook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
 end
 
-TriggerEvent('es:addCommand', 'mdt', function(source, args, user)
+ESX.RegisterCommand('mdt', 'user', function(source, args, user)
 	local usource = source
     local xPlayer = ESX.GetPlayerFromId(source)
     if xPlayer.job.name == 'police' or xPlayer.job.name == 'sasp' then
