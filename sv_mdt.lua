@@ -21,9 +21,9 @@ local embeds = {
   PerformHttpRequest(dwebhook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
 end
 
-ESX.RegisterCommand('mdt', 'user', function(source, args, user)
-	local usource = source
-    local xPlayer = ESX.GetPlayerFromId(source)
+ESX.RegisterCommand('mdt', 'user', function(xPlayer, args, showError)
+	local usource = xPlayer.source
+
     if xPlayer.job.name == 'police' or xPlayer.job.name == 'sasp' then
     	MySQL.Async.fetchAll("SELECT * FROM (SELECT * FROM `mdt_reports` ORDER BY `id` DESC LIMIT 3) sub ORDER BY `id` DESC", {}, function(reports)
     		for r = 1, #reports do
